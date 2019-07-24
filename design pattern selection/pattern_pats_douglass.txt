@@ -1,0 +1,34 @@
+message queuing
+interrupt
+guarded call
+rendezvous
+cyclic executive
+round robin
+static priority
+dynamic priority
+static allocation
+pool allocation
+fixed sized buffer
+smart pointer
+garbage collection
+garbage compactor
+critical section
+priority inheritance
+highest locker
+priority ceiling
+simultaneous locking
+ordered locking
+shared memory
+remote method call
+observer
+data bus
+proxy
+broker
+protected single channel
+homogeneous redundancy
+triple modular redundancy
+heterogeneous redundancy
+monitor-actuator
+sanity check
+watchdog
+safety executive

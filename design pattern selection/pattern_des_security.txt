@@ -1,0 +1,739 @@
+﻿This is the root pattern for all enterprise security concerns. It helps resolve the issue
+of whether security is really needed and, if it is, what properties of security should
+be applied for a particular enterprise. Security properties considered include
+confidentiality, integrity, availability, and accountability. A new wing of a museum of gemstones is to be opened. The museum has significant
+previous experience handling gems, and theft is a large enough risk for the museum
+to want protection from the unauthorized removal of any gems. The museum also
+has information about the collections, and employee information, that should be
+protected from damage or deletion, and in some cases should be kept confidential.
+How can the museum determine the assets that need security protection, and which
+types of protection? An enterprise considers security as a significant non-functional requirement. Key business factors and assets of the enterprise are understood.
+##%%&&
+Asset valuation helps you to determine the overall importance an enterprise places
+on the assets it owns and controls. Loss or compromise of such assets may result in
+anything from hard costs, such as fines and fees, to soft costs due to loss of market
+share and consumer confidence. The museum has begun a risk assessment and identified the following assets to be in
+scope:
+Information Assets Museum employee data Museum financial/insurance data, partner financial data Museum contractual data and business planning Museum research and associated data Museum advertisements and other public data Museum database of collections information
+Physical Assets Museum building Museum staff Museum collections and exhibits Museum transport vehicles
+They must now determine the overall importance of these assets. An enterprise has determined which assets are to be included in the overall risk-
+assessment process, and must now ascertain the value it places on those assets.
+##%%&&
+Threats are the likelihood of, or potential for, hazardous events occurring. They can
+affect any asset or object on which an enterprise places value. An enterprise threat
+assessment identifies the threats posed to the enterprise’s assets, and determines the
+likelihood or frequency of their occurrence. The museum has begun a risk assessment and identified the following assets to be in
+scope:
+Information asset types Museum employee data Museum financial/insurance data, partner financial data Museum contractual data and business planning Museum research and associated data Museum advertisements and other public data Museum database of collections information
+Physical Assets Museum building Museum staff Museum collections and exhibits Museum transport vehiclesThe museum has also identified the major security needs for these assets using
+SECURITY NEEDS IDENTIFICATIONFOR ENTERPRISE ASSETS (89), and must now determine the threats to those assets. An enterprise has defined the assets to be included in a risk assessment and must now identify the events that could cause harm to those assets.
+##%%&&
+A vulnerability is a weakness that could be exploited by a threat, causing the violation
+of an asset’s security property. Conducting an enterprise vulnerability assessment helps
+to identify the weaknesses of the enterprise’s assets and the systems that enable access
+to them, and evaluates the severity if a vulnerability were to be exploited. The museum has begun a risk assessment and identified the following assets to be in
+scope:
+Information asset types Museum employee data Museum financial/insurance data, partner financial data Museum contractual data and business planning Museum research and associated data Museum advertisements and other public data Museum database of collections information
+Physical assets Museum building Museum staff Museum collections and exhibits Museum transport vehiclesThe museum has also identified the potential threats to those assets and must now
+determine vulnerabilities that can compromise those needs. An enterprise has defined the assets to be included in a risk assessment, and has identified potential threats, for example through applying THREAT ASSESSMENT (113). It must now identify the vulnerabilities that can be exploited by those threats.
+##%%&&
+Risk determination is the final stage of a risk-assessment process, and incorporates
+the results from an asset valuation, a threat assessment and a vulnerability
+assessment. Using the input of these patterns, the enterprise is able to evaluate and
+prioritize the risks to its assets. The museum has identified the following assets as part of the its risk assessment:
+Information asset types Museum employee data Museum financial/insurance data, partner financial data Museum contractual data and business planning Museum research and associated data Museum advertisements and other public data Museum database of collections information
+Physical assets Museum building Museum staff Museum collections and exhibits Museum transport vehiclesIt has also completed the three major steps in a risk assessment, as defined by ASSETVALUATION (103), THREAT ASSESSMENT (113), and VULNERABILITY ASSESSMENT(125). It must now assimilate this information, evaluate the overall risk, and present
+the results. An enterprise has defined the assets to be included in a risk assessment and has
+evaluated the importance of those assets in an asset valuation table. As well, it has
+performed a threat assessment and vulnerability assessment and collected unique
+combinations of threats and vulnerabilities in a threat-vulnerability table.
+##%%&&
+This pattern guides an enterprise in selecting security approaches, that is, prevention,
+detection, and response. Security approaches are driven by the security properties its
+assets require, such as confidentiality, integrity, and availability, and by assessed
+security risks. Security approaches also provide a basis for deciding what security
+services should be established by the enterprise. A new wing of an existing museum of gemstones is to be opened. Business planning
+activities have provided an enterprise scope in terms of needs, concerns, and assets.
+Application of SECURITY NEEDS IDENTIFICATIONFOR ENTERPRISE ASSETS (89) has
+identified security properties applicable to each asset type. The dominant asset type
+for the museum is gemstones. Gems are valuable and should not be stolen or manipulated, so their required properties are availability and integrity. Another important
+asset type is documentation and records of gem properties, which require confidentiality, integrity, and availability. The museum needs to determine the security approaches most appropriate for achieving these required security properties, and how
+those approaches should be coordinated for the museum. Business assets that require protection and their required security properties (confidentiality, integrity, and availability) are understood, for example from applying SECURITY NEEDS IDENTIFICATIONFOR ENTERPRISE ASSETS (89). Enterprise or business unit security risks (not system risks) are sufficiently understood, for example, from
+applying RISK DETERMINATION (137) and its closely-related patterns.
+##%%&&
+This pattern guides an enterprise in selecting security services for protecting its assets,
+after the required security approaches—prevention, detection, response—have been
+identified. It helps to establish the level of strength or confidence each security service
+should offer, based on priorities. Primary examples of such services are identification
+and authentication, accounting/auditing, access control/authorization, and security
+management. A new wing of an existing museum of gemstones is to be opened. The museum’s management has already identified security as an enterprise concern and determined appropriate security properties and approaches to be supported. Now the management
+needs to identify what security services will be used. A specific asset group is used in
+this simple example problem.
+The museum has identified three specific gems as irreplaceable due to their financial value. They can only be insured for approximately two-thirds of their actual
+monetary value. The museum wants to provide integrity and availability for physical
+protection of the gems, but also confidentiality for the real value of the assets. The
+museum has determined that prevention will be the primary approach to providing
+integrity and availability of the gems. Prevention will also provide confidentiality for
+information that stipulates real monetary values. Detection and response will provide secondary approaches to protecting these gems and resources will be allocated
+to prevention first. The museum now needs to determine what abstract security services will support the desired properties and approaches. Business strategies, plans, and operations are understood. These include disaster recovery and continuity of operations strategies, a semantic data model, high-level business
+process and workflows, business locations, organizational units, and business cycle
+models. Security approaches (prevention, detection, response) and their priorities have
+been selected to satisfy the identified security needs of enterprise assets. The approaches might have been selected by applying ENTERPRISE SECURITY APPROACHES (148). The
+pattern user has a basic awareness of potential security services.
+##%%&&
+Enterprises often partner with third parties to support their business model. These
+third parties may include application and managed service providers, consulting
+firms, vendors, outsourcing development teams, and satellite offices. As part of this
+relationship, access must be granted to allow data to travel between the organizations.
+Without attention to the protection of that data and the methods by which they are
+transferred, one or both organizations may be at risk. The museum has received a sum of money and is expanding! It wants to expand its
+services in the following ways:
+1.Publish an RSS news feed advertising all upcoming museum events and information.
+2.Sell goods online from its Web site. The museum has created a merchant account
+with a popular payment processor and financial organization. The Web site
+application will use a programmatic API provided by the payment processor.
+3.Outsource the development of a Web site to a third party. One component of
+the Web site will be a public, e-commerce site selling goods and promoting
+museum events and exhibits. The second component will be a private, intranet
+Web site containing an employee directory as well as confidential corporate
+funding and research and development data. The museum realizes that the
+third party will require some confidential database tables and documents in
+order to design and test the application.
+4.Subscribe to the International Museum Consortium (IMC) service. This service will publish current and rolling exhibit information to other subscribers.
+Membership of this service will allow the museum to search and bid for rolling exhibits from any other subscribing museum around the world. They feel
+it would give them a competitive advantage over other regional and local
+museums, and will substantially increase their patron attendance. The IMC
+will provide the software application, centrally manage user accounts and
+facilitate a bidding and messaging process. The museum already has an infrastructure capable of operating and managing the software application, and
+simply needs to configure it to access the museum’s inventory database.
+Each of these projects involves exchanging information with other parties, but
+vary in the degree of security requirements and in the method of data exchange. The 
+museum clearly recognizes the value of these projects, but is concerned that its personnel, customer, and confidential exhibit information will be at risk of unauthorized access, modification, or denial of service. It would like to implement these
+projects but needs to protect its data, systems, and reputation. An enterprise has an existing business process, or is proposing a new business process, that requires information to be exchanged with another entity across a computer
+network. The business factors that initiated the partnership have already been determined and a high-level service level agreement, complete with disaster recovery and
+business continuity planning, has been established.
+##%%&&
+An identification and authentication (I&A) service must satisfy a set of
+requirements for both the service and the quality of service. The function of I&A
+is to recognize an individual and validate the individual’s identity. While each
+situation that calls for I&A is unique, there are common generic requirements that
+apply to all I&A situations. This pattern provides a common generic set of I&A
+requirements. The pattern also helps you to apply the general requirements to your
+specific situation, and helps you to determine the relative importance of conflicting
+requirements. The museum gemstones wing will build on the parent museum’s intranet, with workstations distributed throughout multiple departments. Based on applying ENTERPRISESECURITY SERVICES (161), the museum recognizes the need for specific security functions. Among these are access control and security accounting. Both of these functions
+rely on an I&A service to establish identity. What kind of I&A service does the museum
+need to support these functions? What other situations call for an I&A service in the
+museum? After some analysis, Samuel, the museum’s system engineer, and Edward, the
+enterprise architect, come up with these possible situations that require I&A services: Establishing physical access to the museum during business hours Establishing physical access to the museum by staff during outside business hours On-line access to the intranet from within the local area network of the museum wing Remote on-line access to the museum’s intranet Access to highly sensitive museum physical assets, especially gemstones On-line access to highly sensitive museum information assets Tracking who is downloading information from the publicly-available museumWeb site Support non-repudiation of business transactions on the part of customers orpartners Employee accountability of computer and network resource use within themuseum Accountability to support identification of the source of computer viruses or a network denial of service attack
+The engineers feel that these situations differ in their I&A requirements, but are
+not sure how to capture the differences. For example, a single mechanism for Web
+site I&A doesn’t work, because Vic the visitor, downloading publicly-available information, has I&A requirements that differ from Manuela the museum manager, who
+is working from home and retrieving sensitive accounting data. Furthermore, for
+each of these situations, the museum wants to properly balance conflicting objectives, such as a service that detects would-be hackers versus a service that is easy for
+employees to use. Typically a strong I&A mechanism that detects most imposters,
+that is, people who falsely claim to be legitimate, are hard to use, while I&A mechanisms that are easy to use tend to give weaker protection, in too many cases concluding that an imposter is legitimate. 
+Samuel’s initial thinking had been that he could simply select some I&A mechanism such as a password-based log-on or an employee badge. This has given way to
+the realization that more thought and consideration is needed to ensure that multiple
+I&A needs are properly addressed. Samuel and Edward recognize that they need to
+specify a clear and balanced set of requirements for each situation the requires I&A.
+How can they accomplish this? An organization or project understands its planned uses of I&A, for example, from
+applying ENTERPRISE SECURITY SERVICES (161), or from applying one or more of the pattern systems that use I&A, such as the patterns for access control in Chapter 8, 9
+and 10 and the accounting patterns in Chapter 11.
+The scope is known to be situations in which both identification and authentication are needed. Other situations exist in which only identification is needed without
+authentication, but those situations are not addressed in this pattern.
+##%%&&
+This pattern describes alternative techniques for automated I&A, as opposed to
+procedural or physical I&A. It helps you to select an appropriate I&A strategy that
+consists of a single technique, or a combination of techniques, to satisfy I&A
+requirements. Techniques considered include password, biometrics, hardware token,
+PKI, and I&A of unregistered users. Indiana Jones, a museum employee, needs to gain access to the museum intranet
+while collecting artifacts for the museum from around the world. He wants to check
+his e-mail abroad and also access the museum’s database to evaluate a found artifact.
+From Jones’ perspective, the most important requirements for this I&A service are
+to support I&A from remote locations and to be easy to use. From the perspective
+of Samuel the museum systems engineer, the most important requirements for this
+I&A service are to have high accuracy, especially to reject attempts by non-employees
+to gain access to the intranet, and to limit I&A overhead. Samuel and his systems
+engineering group have used I&A REQUIREMENTS (192) to define all four of these
+intranet I&A requirements as high priority. Now Ivan the intranet architect needs to
+select an I&A service to satisfy these requirements. The choices available to Ivan are
+many. They include identifier and password, PKI certificates, multiple biometrics options, and a hardware token with a one-time password. How can Ivan choose among
+the alternatives? The person applying this pattern understands the requirements for I&A, along with
+their relative importance—for example, from the results of applying I&A REQUIREMENTS (192).A decision has been made to use automated I&A. In the remainder of this pattern, the term ‘I&A’ is intended to mean automated I&A, as opposed to
+physical or procedural I&A, such as showing a badge to a guard at the front door.
+##%%&&
+This pattern describes security best practice for designing, creating, managing, and using password components in support of I&A requirements. This pattern can aid three audiences: engineers, in selecting or designing commercial products that provide password mechanisms, administrators, in the operation and management of password mechanisms, and users, in improving their selection and handling of passwords.
+Employees of the museum need to gain access to the museum intranet, which is based on passwords. Enforcement of security policy has been lax, and it has been common practice for employees to write down passwords and leave them by their workstations, or even tape them to the display monitor. As a result, several incidents have occurred in which unauthorized staff and even visitors have gained access to sensitive information. The system administrators want to correct this problem, specifically to create good passwords kind keep them secure. There are two situations that require passwords as part of I&A whose results are used for access control. First, a low level of security is needed for I&A used to gain access to the overall intranet. Second, a high level of security is needed for I&A used to gain access to sensitive information, including employee salary data.
+A password mechanism has been selected for user authentication on a specified segment of an information system. The person applying this pattern understands the requirements for I&A, along with their relative importance-for example, from the results of applying I&A requirements.
+##%%&&
+This pattern aids the selection of appropriate biometric mechanisms to satisfy I&A
+requirements. Biometric mechanisms considered are face recognition, finger image,
+hand geometry, iris recognition, retinal scanning, signature verification, and speaker
+verification. Additional mechanisms, including DNA, are identified for completeness. The internal maintenance and research areas of the new gemstone wing of the museum essentially afford staff access directly to high-value assets and to the information
+on those assets. While physical entry for these activities is being tightly controlled,
+access to sensitive asset information must also be restricted. To gain access to the
+Web server with strictly controlled asset information, staff are required to log-on to
+the Web server. Part of the log-on process will be use of a biometric to provide additional verification of employee identities. Alvin the system architect must determine
+which biometric mechanism is most appropriate for the museum. The person applying this pattern understands the requirements for I&A, along
+with their relative importance, for example from the results of applying I&A REQUIREMENTS (192). A decision has been made to use biometrics for I&A, for example from the results
+of applying AUTOMATED I&A DESIGN ALTERNATIVES (207), but which biometrics
+technique to use has not been decided. The decision to use some form of biometrics
+is typically made in the context of a user population of limited size, because of the
+enrolment effort required.Discussion: What do all biometric mechanisms have in common?
+All biometric mechanisms share an underlying methodology involving enrolment
+(which is outside the scope of this pattern) and verification or identification. At enrolment, the person offers a ‘live sample’ of the biometric, such as a finger image. This
+is scanned electronically, processed and stored as a template, which is a mathematical representation of the original sample. Once the template is captured, the original
+sample data is no longer used and is discarded. Alternatively, it might be wise to
+keep the original raw sample data, against the possibility that better template-algorithms and representations might become available in the future: in some areas such as fingerprint recognition, technology is changing and significant improvement can
+be expected. Keeping the raw sample data would allow one to benefit from newer
+algorithms without the need to re-enrol all users.
+To confirm identity at a future time, the individual presents the live sample, which
+is matched against the stored template. In a 1:many search, the individual presents
+only the live sample, and the database is searched for a match. This is called identification. In a 1:1 search, the user presents a name or other identifier along with the
+live sample. The system checks the live sample only against templates stored under
+that identifier. This is called verification. [Seffers2001].
+When biometrics are used for verification, the captured biometric record is
+matched against one biometric template in the data store to determine a match. The
+one biometric template in the data store is found by association with a presented
+identifier, acquired separately via non-biometric means such as a token. This is a 1:1
+match, and answers the question ‘Am I who I say I am’?
+When biometrics are used for identification, the biometric capture and conversion
+are the same, but no separate identifier is acquired, and therefore the verifier matches the biometric record against all biometric records in the data store. If a match is
+found, the associated identifier is found. This is a 1:many match, and answers the
+question ‘Who am I’? The result is still success or failure, and in the case of success,
+an identifier is produced. If the identifier is considered to be verified or authenticated, then in effect the biometric technique provides a full I&A solution.
+##%%&&
+This pattern describes who is authorized to access specific resources in a system, in
+an environment in which we have resources whose access needs to be controlled. It
+indicates, for each active entity that can access resources, which resources it can
+access, and how it can access them. In a medical information system we keep sensitive information about patients. Unrestricted disclosure of this data would violate the privacy of the patients, while unrestricted modification could jeopardize the health of the patients. Any environment in which we have resources whose access needs to be controlled.
+##%%&&
+This pattern describes how to assign rights based on the functions or tasks of people
+in an environment in which control of access to computing resources is required and
+where there is a large number of users, information types, or a large variety of
+resources. It describes how users can acquire rights based on their job functions or
+their assigned tasks. The hospital has many patients, doctors, nurses, and other personnel. The specific
+individuals also change frequently. Defining individual access rights has become a
+time-consuming activity, prone to errors. Any environment in which we need to control access to computing resources and
+where there is a large number of users, information types, or a large variety of
+resources.
+##%%&&
+In some environments data and documents may have critical value and their disclosure
+could bring serious problems. This pattern describes how to categorize sensitive
+information and prevent its disclosure. It discusses how to assign classifications
+(clearances) to users, and classifications (sensitivity levels) to data, and to separate
+different organizational units into categories. Access of users to data is based on
+policies, while changes to the classifications are performed by trusted processes that are
+allowed to violate the policies. The high command of an army has decided on a plan of attack in a war. It is extremely important that this information is not known outside a small group of people, or
+the attack may be a failure. In some environments data and documents may have critical value and their disclosure could bring serious problems.
+##%%&&
+In a computational environment in which users or processes make requests for data
+or resources, this pattern enforces declared access restrictions when an active entity
+requests resources. It describes how to define an abstract process that intercepts all
+requests for resources and checks them for compliance with authorizations.Also Known AsPolicy Enforcement Point. In the hospital example described in ROLE-BASED ACCESS CONTROL (249) we declared the accesses allowed to doctors and other personnel. However, we expected
+voluntary compliance with the rules. It has not worked, busy personnel bypass the
+rules and there is no way of enforcing them. A computational environment in which users or processes make requests for data or
+resources.
+##%%&&
+Least privilege is a fundamental principle for secure systems. Roles can directly
+support the least privilege principle, but a systematic approach to assigning only the
+required rights to each role is required. This pattern provides a precise way, based on
+use cases, of assigning rights to roles to implement a least-privilege policy. Multitronics is a company that sells on-line digital media such as video, sounds, or
+images. They have been advised that for security reasons they should use a ROLE-BASED ACCESS CONTROL (249) approach, in which they can apply a least-privilege policy. For this they need to first identify the roles required to perform the business
+functions. In this system a manager administers the items on sale, deciding what is
+to be sold, at what prices, and so on. He can also order items for future sale. Subscribers register and create accounts so that they can purchase copies of digital items
+and download them to a mobile device such as a cellular phone. Subscribers can also
+reserve items not yet in stock. A salesperson maintains a catalog of items for sale and
+bills the subscribers for their purchases. To apply the required policy, we need a systematic way to assign rights to these roles. Applications composed of a variety of roles in which it is not easy to assign proper
+rights to the roles.
+##%%&&
+The function of the access control security service is to permit or deny someone the right to perform an action on an asset, such as create, read, modify, or delete a data file. While each situation that calls for access control is unique, there are common generic requirements that apply to all access-control situations. This pattern provides a common generic set of access control requirements. The requirements address both the access control function and the properties of the access control service, such as case of use and flexibility. The pattern also helps you to apply the general requirements to your specific situation, and helps you to determine the relative importance of conflicting requirements.
+A new wing of an existing museum of gemstones is to he opened. The wing will house gems of varying value, some of which are owned by the museum and some of which are on loan. Some of the gems are famous stones whose loss would involve much media publicity. The wing will house valuable gems on display, low-value gems in a hands-on exhibit, and gems of all values in working areas of the wing that are not open to the public.
+Based on the results of applying enterprise security services (161), Samuel the museum’s system engineer understands that the museum needs to control access to the gems and to the information related to gems. An obvious example is that an at tempted access by Theo the thief to steal a gem should be denied. Another example is that the recorded carat weight for gems should not he modifiable by unauthorized people. An unauthorized change in recorded carat weight could change a gem's value, change insurance costs, or even signal the beginning of an attempt to carve off a piece of the stone.
+But Samuel also understands that the need to deny unauthorized access must be balanced against the need to permit authorized access. For example, the best safeguard against theft of a gem is to lock it up in a vault and not tell anyone where it is. But this would interfere with a primary goal of the museum, which is to display gems for public viewing. Therefore, Samuel needs to specify a balanced set of requirements for access control and the relative importance of those requirements, as a means of driving and evaluating an appropriate access control service for the museum. How can Samuel define such a set of requirements?
+An organization understands how it plans to use access control, for example, from applying enterprise security services (161). An organization understands the general types of actors, assets and actions that are to be subject to access control. An access control rule permits an actor to perform an action on an asset-for example, user A is granted permission to modify file F. Actor types can include humans, software, business or automated processes, or information systems. Actors can be internal to an organization, such as an employee, or external, such as a supplier or customer. Action types include both physical and automated actions. Common actions include create, see, use, change, and destroy or delete. Asset types include both physical and informational assets.
+##%%&&
+If you need to provide external access to a system, but want to protect it from misuse
+or damage, define a single access point that grants or denies entry to the system after
+checking the client requiring access. The single access point is easy to apply, defines
+a clear entry point to the system, and can be assessed when implementing the desired
+security policy. Consider a small medieval village. It consists of a group of houses in close proximity.While there is little economic prosperity, there is little value in protection from burglars and little interest to robbery. Security for people means that each man protects
+his own belongings. Each man spends time building weapons and training in their
+use so that he can defend his family.
+Somehow economy prospers (we do not speculate why and how), more and
+more people move to the village, and more and more value is accumulated within
+the village. However, since the people need more time for their prospering businesses,
+they have less time to spend practicing defense. Their level of protection becomes
+lower, while the threat from burglars grows. In addition, visitors must convince every individual shopkeeper that they are valuable customers instead of thieves before they can actually conduct business with them. The village dwellers wonder
+how they can simplify protection, so that everybody no longer needs to deal with
+it many times a day. You need to provide access to a system for external clients. You need to ensure the
+system is not misused or damaged by such clients.
+##%%&&
+Once you have secured a system using SINGLE ACCESS POINT (279), a means of identification and authentication (I&A) and response to unauthorized break-in attempts is
+required for securing the system. CHECK POINT (287) makes such an effective I&A and
+access control mechanism easy to deploy and evolve. The mayor of our medieval town that established SINGLE ACCESS POINT (279) with
+their gate and guard is concerned about their protection during times when different
+threats come close to the town. For example, the merchants would like to have the
+gate freely open during daytime, to let traders in and out easily. However, they are
+concerned about burglars sneaking into their warehouses during night time. You have a system protected from unauthorized access in general, for example by applying SINGLE ACCESS POINT (279). Nevertheless, you want authorized clients be able to enter your system.
+##%%&&
+Verifying a user’s identity and access rights for every system function can be tedious.
+To keep track of who is using the functions and their corresponding access rights,
+systems establish a security session after a user has logged in successfully. A unique
+reference to the session object is made available, instead of passing all access rights
+or re-authenticating a user repeatedly. Queries regarding a user’s security properties
+are delegated to the attached session object via the session reference. Our medieval city is concerned about foreigners entering through its gate. Merchants are welcome, but burglars and thieves shouldn’t be let in by the guards.
+Peasants looking for work in one of the city’s workshops are allowed in depending
+on the demand of the guilds. On the other hand, once a person has entered the
+city, it is hard for the city dwellers to tell who that person is if they are not a well-
+known city dweller. Even the night watchman patrolling the city’s streets has a
+hard time knowing how to deal with a stranger. A merchant should be welcomed
+and protected, while someone else lingering in the streets at night might need to
+be dealt with. 
+The problem of city inhabitants and the night watchman is that they do not have
+equivalent resources to the guards at the city gate, to interrogate and investigate people and check their identity. In addition, it would be annoying to visitors that are welcome if they had to answer the same questions over and over again, such as who they
+are, where they are going, and what their business is in the city.
+The mayor summons the city council to discover a way to keep the city secure
+while making the city a welcoming as possible for merchants and other guests. Another requirement that comes up at the council meeting is that the city officials would
+also like to know when a visitor has left. Your system is shared by multiple users and system components need a way to share
+(security) data associated with a user. For example, you have already applied CHECKPOINT (287).
+##%%&&
+Designing the user interface for a system in which different users are granted different
+access rights can be challenging. At one end of the spectrum is the approach taken by
+this pattern, which provides a view of the maximum functionality of the system, but
+issues the user with an error when they attempt to use a function for which they are
+not authorized. Consider you are developing an Internet site. The site should present your company on the World-Wide Web as well as provide downloads for brochures, user manuals, and
+demo software. However, to be able to track who downloaded such material, Internet
+surfers are required to provide their name and address before they can start a download. However, to avoid irritating returning users, they are granted privileges by the site
+via a cookie, and thus do not need to register again. See figure on page 306.
+For example Yahoo! groups show a group’s features to anonymous users, without
+letting them access the ‘members only’ menu. Once logged in and registered as a
+member of a group, the ‘members only’ menu is accessible.
+How do you design the Web site so that it shows the possibility of downloads
+while still restricting access to registered users v? You are designing the interface of a system in which access restrictions such as user
+authorization to parts of the interface apply. While most of the applications of this
+pattern are within the domain of graphical user interfaces (GUI), it can also apply to
+other interface types as well.
+##%%&&
+Designing the user interface for a system in which different users are granted different
+access rights can be challenging. This pattern guides a developer in presenting only the
+currently-available functions to a user, while hiding everything for which they lack
+permission. Extending the Web site example from FULL ACCESSWITH ERRORS (305): registered users are able to upload files to your Web site. After uploading they also need a
+means of deleting or changing the uploaded files. However, an individual user should
+only be able to change their own files. Only a user with administrative rights should
+be allowed to maintain files by all users.
+Yahoo! groups provides a similar means of uploading files to groups for its group
+members. However, only the uploading member is able to delete or edit the file. The
+group owner can delete files uploaded by all users. If no permission is given, one can
+see the ‘File’ menu, corresponding to FULL ACCESSWITH ERRORS (305), but the file
+folder itself cannot be extended by adding files. You are designing the user interface of a system in which access restrictions such as
+user authorization apply to parts of the interface. While most of the applications of
+this pattern are within the domain of graphical user interfaces (GUIs), it can also apply to other interface types as well.
+##%%&&
+This pattern addresses the problem of how to verify that a subject is who it says it is. Use a single access point (279) to receive the interactions of a subject with the system and apply a protocol to verify the identity of the subject.
+Our system his legitimate users that use it to host their files. However, there is no way to make sure that a user who is logged in is a legitimate user. Users can impersonate others and gain illegal access to their files.
+Operating systems authenticate users when they first log in, and maybe again when they access specific resources. The operating system controls the creation of a session in response to the request by a subject, typically a user. The authenticated user, represented by processes running on its behalf, is then allowed to access resources according to their rights. Sensitive resource access may require additional process authentication. Processes in distributed operating systems also need to be authenticated when they attempt to access resources on external nodes.
+##%%&&
+This pattern address how to define and grant appropriate access rights for a new process.
+Most operating systems create a process with the same rights as its parent. If a hacker can trick an operating system into creating a child of the supervisor process, this runs with all the rights of the supervisor.
+An operating system in which processes or threads need to be created according to application needs.
+##%%&&
+This pattern addresses how to specify the rights of processes with respect to a new
+object. When a process creates a new object through a factory, the request includes the features of the new object. These features include a list of rights to access the object. In many operating systems the creator of an object gets all possible rights to the object. Other operating systems apply predefined sets of rights: for example, in Unix all
+the members of a file owner’s group may receive equal rights for a new file. These
+approaches may result in unnecessary rights being given to some users, violating the
+principle of least privileges. A computing system that needs to control access to its created objects because of
+their different degrees of sensitivity. Rights for these objects are defined by authorization rules or policies that are enforced when a process attempts to access an object.
+##%%&&
+This pattern addresses how to control access by a process to an object. Use a reference
+monitor to intercept access requests from processes. The reference monitor checks
+whether the process has the requested type of access to the object. Our operating system does not check all user requests to access resources such as files
+or memory areas. A hacker discovered that some accesses are not checked, and was
+able to steal customer information from our files. He also left a program that randomly overwrites memory areas and produces serious disruption to the other users. An operating system that consists of many users, objects that may contain sensitive
+data, and where we need to have controlled access to resources.
+##%%&&
+This pattern addresses how to control access by processes to specific areas of their
+virtual address space (VAS) according to a set of predefined access types. Divide the
+VAS into segments that correspond to logical units in the programs. Use special
+words (descriptors) to represent access rights for these segments. Our operating system improved by using a reference monitor. However, hackers discovered that the unit of access control to memory was coarse. By taking advantage
+of the lack of precision in controlling access they were able to access other processes’
+areas. Multiprogramming systems with a variety of users. Processes executing on behalf
+of these users must be able to share memory areas in a controlled way. Each process runs in its own address space. The total VAS at a given moment includes the
+union of the VASs of the individual processes, including user and system processes. Typical allowed accesses are read, write, and execute, although finer typing is
+possible.
+##%%&&
+Unauthorized processes could destroy or modify information in files or databases,
+with obvious results, or could interfere with the execution of other processes.
+Therefore, define an execution environment for processes, indicating explicitly all
+the resources that a process can use during its execution, as well as the type of access
+to the resources. In our operating system we know now how to assign access rights to processes and
+how to enforce these rights at execution time. However, a process may have different
+functions and in each functional mode it may need different rights. For example, if a
+process needs to read some files to collect some data, this should happen only at the
+specific time of access to the file, otherwise a hacker could take advantage of the extra rights to perform illegal accesses. A process executes on behalf of a user, group, or role (a subject). A process must have
+access rights to use the resources defined for its subject during execution. The set of
+access rights given to a process define its execution domain. At times the process may
+also need to enter other domains to perform its work: for example, for example, to
+extract data from a file in another user’s domain. Frequently, users structure their domains as a hierarchical tree of domains with one root domain.
+##%%&&
+If a process execution environment is uncontrolled, processes can scavenge information
+by searching memory and accessing the disk drives where files reside. They might
+also take control of the operating system itself, in which case they have access to
+everything. Use AUTHORIZATION (245) to define the rights of a subject. From these
+rights we can set up the rights of processes running on behalf of the subject. Process
+requests are validated by CONTROLLED OBJECT MONITOR (335) or REFERENCEMONITOR (256) respectively. Jim the hacker discovers that the customer’s files have authorizations and cannot be
+accessed directly, so he tries another approach. He realizes that processes are not given only the rights of their owners, but also have rights with which they can access
+memory and other resources belonging to other users. He systematically searches areas of memory and I/O devices being used by other processes until he can scavenge
+a few credit card numbers that he can use in his illicit activities. A process executes on behalf of a user or role (a subject). A process must have access
+rights to use these resources during execution. The set of access rights given to a process define its execution domain. Processes must be able to share resources in a controlled way. The rights of the process are derived from the rights of its invoker.
+##%%&&
+This pattern describes how to control access to files in an operating system.
+Authorized users are the only ones that can use a file in specific ways. Apply
+AUTHORIZATION (245) to describe access to files by subjects. The protection object
+is now a file component that may be a directory or a file. Jim is an application programmer in a bank. He has a user account and some files in the bank’s operating system. He realizes that the same system also stores files with
+customer data. These files have no authorization controls. Jim reads several of these
+files and finds customer information such as SSNs and credit card numbers. He uses
+this information to charge some items bought at mail-order shops. The users of operating systems need to use files to store permanent information.
+These files can be accessed by different users from different workstations, and access
+to the files must be restricted to authorized users who can use them in specific ways.
+Because of the needs of the organization, some (or all) of the files must be shared by
+these subjects. Use cases for a file system include creation and deletion of files, opening and closing of files, reading and writing files, copying files, and so on. A subject
+has a home directory for each authorized workstation, but the same home directory
+can be shared among several workstations or among several subjects. The home directory is used to search the files for which a subject has rights. Files are organized
+using directories, usually in a tree-like structure of directories and files. This facilitates the search for specific files.
+##%%&&
+A security accounting service must satisfy a set of requirements for both the service
+and the quality of service. The function of security accounting is to track security-
+related actions or events, such as damage to property, attempts at unauthorized
+database access, or transmission of a computer virus, and provide information about
+those actions. While each situation that calls for security accounting is unique, there
+are common generic requirements that apply to all security accounting situations.
+This pattern provides a common generic set of security accounting requirements. The
+pattern also helps you apply the general requirements to your specific situation, and
+helps you to determine the relative importance of conflicting requirements. Gemstones within a museum are objects used in archeological research. They are also
+cleaned, transported and handled by several authorized personnel. The museum is
+interested in protecting museum assets from theft, damage or any mishandling. The
+museum is serious about assigning responsibility for any asset compromise or attempts to compromise assets. The museum needs to identify the requirements for the
+key components of a security accounting service that will help them protect their
+valuable gems and help assign responsibility for attempts to compromise their assets.
+Based on the results of applying ENTERPRISE SECURITY SERVICES (161), Samuel the
+museum system engineer understands that the museum needs accountability of actions and events when the gems are transported or handled, and accountability of actions on the information about the gems, which is stored in a database. The museum
+needs to be able to assign responsibility for any asset compromise or attempts to compromise assets. For example, the museum needs to know who is responsible for
+transporting a gem. When information about a gem, such as its current location or
+its recorded carat weight, is entered or modified, the museum needs to know who
+made the addition or change. But Samuel also understands that the need to track and
+account for these actions and events must be balanced with the need for privacy and
+ease of operations. Therefore, Samuel needs to specify a balanced set of requirements
+for security accounting and the relative importance of those requirements, as a means
+of driving and evaluating an appropriate security accounting service for the museum.
+How can Samuel define such a set of requirements? The planned uses of security accounting are understood, for example, from applying
+ENTERPRISE SECURITY SERVICES (161). Asset types with a need for security accounting 
+services are known, and the general types of actors that are to be held accountable are
+known. Actor types can include humans, software, business or automated processes,
+or information systems. Actors can be internal to an organization, such as an employee, or external, such as a supplier or customer. Asset types include both physical and
+information assets. The degree of confidence needed for the security accounting services by general asset types is known in relative terms. For example, a museum needs
+a very high degree of confidence in knowing who broke into the museum and stole a
+valuable gem, but it needs a lower degree of confidence in knowing who defaced the
+outside of the museum building.
+##%%&&
+An audit service must satisfy a set of requirements for both the service and the quality of service. The audit function is to analyze logs, audit trails or other captured information about an event, such as entering a building or accessing resources on a network, to find and report any indication of security violations. While each situation that calls for an audit is unique, there are common generic requirements that apply to all audit situations. This pattern provides a common generic set of audit requirements. The pattern also helps you to apply the general requirements to your specific situation, and helps you determine the relative importance of conflicting requirements.
+The museum's research department has a network that they use for messaging and collaboration with various universities around the world. Among the types of information exchanged and stored are details about the location of various gemstone mines. Every six months the museum must present a report of the information exchanges to the board of trustees. The museum wants to take six months' worth of activity and summarize it into the critical and non-critical events that occurred over that six month period, and who was involved in those events. Samuel the museum system engineer understands this goal, but at the same time he understands that capturing extensive audit information can degrade system performance and require significant resources for storage and analysis. Privacy considerations are also a constraint on the capture and use of audit data. Samuel needs to identify requirements for an audit service that will help the museum achieve the goals while balancing the constraints.
+Accounting requirements and their relative importance are understood, for example, from applying Security Accounting Requirements. The planned uses of audit are understood.
+##%%&&
+A service that captures security audit trails and audit logs must satisfy a set of requirements for both the service and the quality of service. The audit trails and logging function is to capture audit logs and audit trails about events and activities that
+occur within an organization or system, to enable reconstruction and analysis of
+those events and activities. While each situation that calls for an audit trail is unique,
+there are common generic requirements that apply to all audit trails and logging situations. This pattern provides a common generic set of audit trail requirements. The
+pattern also helps you to apply the general requirements to your specific situation,
+and helps you to determine the relative importance of conflicting requirements. The new museum wing for gemstones keeps its most precious gems in a room with
+limited access. The room’s access is controlled by electronic badge access. Cleaning
+personnel, scientists and other authorized personnel need special badges to access the
+room. As an extra precaution, the museum would like a way to track access to the
+room by individuals and by roles. Samuel the museum system engineer needs to specify the requirements for audit trails and logging (AT&L) of activities related to this
+limited access room, and the relative importance of those requirements, as a means
+to drive and evaluate an AT&L service. Audit requirements and their relative importance are understood, for example,
+from applying AUDIT REQUIREMENTS (369). The planned uses of audit trails and logging are understood.
+##%%&&
+An intrusion detection system (IDS) must satisfy a set of requirements for both the
+service and the quality of service. IDS is a security service that automates the
+monitoring of events occurring in a computer system or network, and analyzes these
+events for any indication of security violations. While each situation that calls for
+intrusion detection is unique, there are common generic requirements that apply to
+all intrusion detection situations. This pattern provides a common generic set of
+intrusion detection requirements. The pattern also helps you to apply the general
+requirements to your specific situation, and helps you to determine the relative
+importance of conflicting requirements. The museum’s research department has a network that they use for messaging and
+collaboration with various universities around the world. Among the information
+exchanged and stored are details about the location of various natural gemstone
+mines. Samuel the museum system engineer wants the museum immediately to detect
+unauthorized and successful attempts to gain access to the network and to any hosts
+that contain sensitive information. Once alerted, Samuel would like information that
+can be used to hold accountable the individual(s) that have breached their perimeter.
+In addition, Samuel would like to have information recorded and available on unsuccessful attempts to gain access. Samuel understands that trade-offs are involved,
+because stopping intruders and capturing information about attempted intrusions
+can require significant resources that degrade system performance, and which may
+make legitimate access more difficult. Privacy considerations are also a constraint on
+intrusion detection efforts. Samuel needs to identify requirements for an IDS service
+that will help the museum achieve the goals while balancing the constraints. Accounting requirements and their relative importance are understood. The requirements might have been selected by applying SECURITY ACCOUNTING REQUIREMENTS(360). The planned uses of IDS are understood.
+##%%&&
+A non-repudiation service must satisfy a set of requirements for both the service and the
+quality of service. The function of non-repudiation is to capture and maintain evidence
+so that the participants of a transaction or interaction cannot deny having participated
+in that activity. While each situation that calls for non-repudiation is unique, there are
+common generic requirements that apply to all non-repudiation situations. This pattern
+provides a common generic set of non-repudiation requirements. The pattern also helps
+you to apply the general requirements to your specific situation, and helps you to
+determine the relative importance of conflicting requirements. The museum seeks to increase the publicity of its new wing for gemstones. To do
+this, the museum seeks to have many exotic gems on display for the grand opening.
+The Crown Jewels of England are scheduled to be a part of the display. Manuela the
+museum manager would like to have a high degree of confidence that the receipt of
+the jewels by the museum and the release of the jewels after the opening are protected. Samuel the museum system engineer needs to specify the requirements for non-repudiation and the relative importance of those requirements, as a means of driving
+and evaluating a non-repudiation service that will support events such as this grand
+opening. How can Samuel define such a set of requirements? Accounting requirements and their relative importance are understood, for example, from applying SECURITY ACCOUNTING REQUIREMENTS (360). The planned uses of non-repudiation are understood. A common transaction type is the sending and
+receiving of materials such as merchandise or contracts. Non-repudiation is used to
+prevent the receiver from denying that they received the materials when in fact they
+did receive them. Sometimes non-repudiation is used to prevent the sender from
+claiming that they sent the materials when in fact they did not send them.
+##%%&&
+Some of the hosts in other networks may try to attack 
+the local network through
+their IP-level payloads. These payloads may include viruses or 
+application-specific
+attacks. We need to identify and block those hosts. A packet filter firewall 
+filters
+incoming and outgoing network traffic in a computer system based on packet
+inspection at 
+the IP level. Our system has been attacked recently by a variety of hackers, including 
+somebody
+who penetrated our operating system and stole our clients’ credit card numbers. Our
+employees are wasting time at work by looking at inappropriate sites on the Internet.
+If we 
+continue like this we will soon be out of business. Computer systems on a local network 
+connected to the Internet and to other networks with different levels of trust. A host in a 
+local network receives and sends traffic to other networks. This traffic has several layers or 
+levels. The most basic level is
+the IP level, made up of packets consisting of headers and bodies 
+(payloads). The
+headers include the source and destination addresses as well as other routing 
+information, while the bodies include the message payloads.
+##%%&&
+A proxy-based firewall inspects and filters  
+incoming and outgoing network traffic
+based on the type of application service to be accessed, or 
+performing the access. This
+pattern interposes a proxy between the request and the access, and 
+applies controls
+through this proxy. This is usually done in addition to the normal filtering 
+based on
+addresses. After we started using 
+a PACKET FILTER FIREWALL (405) most of our problems were
+reduced. However, some of the messages 
+sent from sites we don’t consider suspicious
+contain malicious payloads, because hackers were 
+spoofing trusted addresses. These
+payloads sometimes contained incorrect commands or the wrong 
+type and length of
+parameters. Our PACKET FILTER FIREWALL (405) cannot stop these attacks, 
+because
+it doesn’t look at the message payload, and as a result we are experiencing new problems. It is also hard to block every malicious site. Computer systems on a local network 
+connected to the Internet and to other networks, where a higher level of security than the one 
+provided by packet filters is
+needed. Specifically, we want to control attacks at the application 
+layer of the network protocol. Incorrect commands or parameters can produce buffer overflows
+and 
+other conditions that can be exploited for attacks. In some cases we might also
+want to 
+authenticate the client to avoid spoofing. Outgoing flows (to malicious sites)
+can also be 
+damaging in this environment.
+##%%&&
+A stateful firewall filters incoming and outgoing network traffic in a computer system based on state information derived from past communications. State information generally describes whether the incoming packet is part of a new connection, or a continuing communication whose connection was approved previously. In other words, states describe a context for each packet.
+We have been able to contain many attacks with packet filter firewall (405) and proxy-based firewall (411). However, we are still plagued with distributed denial of service attacks that prevent customers from reaching our site. We also have performance problems for high-speed streams. In addition, a more sophisticated group of hackers is attacking us, sending us viruses whose bodies are assembled from parts included in message data and commands.
+Computer systems on a local network connected to the Internet and to other external networks. A higher level of network security is needed than static packet or proxy filtering. A packet filter firewall (405) only inspects the address of the packet, without the knowledge of previous communications of the same network. Similarly, a proxy-based firewall (411) filters based on proxy restrictions for each packet. The knowledge of whether a connection is a new connection or an established connection is important for improved security: in particular, denial of service attacks could be identified more conveniently if we knew the relationship between packets.
+##%%&&
+All systems are potentially liable to attack, whether from internal or external sources. If the information held by a system is sensitive, it should be protected. Part of this protect ion can take the form of obscuring the data itself, probably through some form of encryption, and obscuring information about the environment surrounding the data.
+A typical Internet technology system Will use a combination of Web and application servers, together with a Common persistent store, usually in the form of a common database, in which application data is stored. All these parts of the system will be protected from external attack by a firewall and possibly a demilitarized zone (449). However, this is no guarantee of security-what if the attacker breaches these external measures, or if an attack is internal to the organization?
+The system will gather user information, such as credit card details, and store this in the database. The user information in the database is an obvious target for any attacker who wishes to steal or alter such information. Hence extra security measures may he put in place for the database. However, user information may also he retained temporarily by other parts of the system, in memory, in a cache, or in session state server, as shown in the figure on the previous page.
+Application data can be protected by encrypting it, hut such encryption is comparatively slow. Widespread use of encryption for all data in the system will impact system performance. Even then, there is no guarantee of security, as the system must
+have access to the keys required to decrypt the data when it is needed by the application. This means that such keys are also vulnerable to attack. If the intruder can find and identify the encryption keys used for particular purposes, then all benefit from the encryption is lost. This can be addressed by designating one server to hold and distribute the keys. I his server can then he specially protected. however. ii an intruder can obtain credentials to access this server, then it too may be compromised, hence anywhere the application has access to such credentials (or equivalent privilege must also be protected).
+An application server architecture has been adopted to deliver Internet technology application servers together with a Common persistent store. The business logic and dynamic Web content generation of the application resides on application servers, while all static content is provided by Web servers that also act as a protection reverse proxy (457) or an integration reverse proxy (465) for the dynamic Web content. The application gathers information on users and holds this in its database. The application is protected from external attack by a D demilitarized zone (449).
+##%%&&
+Messages passing 
+across any public network—particularly the Internet—can be intercepted. The information 
+contained in such messages is thus potentially available
+to an eavesdropper. For sensitive 
+communication across a public network, create encrypted SECURE CHANNELS (434) to ensure that 
+data remains confidential in transit. A typical Internet-based application will exchange a 
+variety of information with its
+users. Some of this information about people, products and 
+services will be sensitive
+in nature. Typical examples include credit card numbers when making 
+on-line purchases or bookings, or product plans and shipment schedules exchanged between
+business 
+partners.
+It is relatively straightforward to secure data on the client and the server. The 
+client
+and server can be protected by different firewall mechanisms, in the case of the server
+maybe even a fully-fledged DEMILITARIZED ZONE (449), to make it difficult for an
+attacker to 
+penetrate the systems and gain access to the data they hold. If the data is
+of a particularly 
+sensitive nature, such as credit card numbers, it may even be stored
+in encrypted form following 
+INFORMATION OBSCURITY (426). However, data on the
+Internet itself has no protection from 
+intruders, and straightforward encryption
+mechanisms that can be used in a managed environment 
+cannot be applied between
+two unrelated machines across the Internet. Because of this, data is 
+passed across an
+unprotected channel, as shown in the figure on the previous page.
+A private channel could be set up between client and server, but this would rely on
+a 
+private networking mechanism, which defeats the object of delivering services
+cheaply and 
+conveniently across a public network such as the Internet. The system delivers 
+functionality and information to clients across the public Internet through one or more Web 
+servers. Larger systems may use multiple Web servers
+and multiple application servers to deliver 
+this functionality, all protected by a DEMILITARIZED ZONE (449). The application must exchange 
+data with the client. A percentage of this data will be sensitive in nature.
+##%%&&
+An organization conducting e-commerce, offering services, 
+or publishing information
+using Web technologies must make their service easily accessible to 
+their users.
+However, if these interactions are commercially sensitive or of a high value, we 
+want
+to ensure that the users with whom we are interacting are who we think they are, and
+the users 
+themselves want to be sure that our system is what they think it is. By
+introducing a system of 
+KNOWN PARTNERS (442), identified uniquely in a way that
+can be authenticated, we can be sure of 
+who is interacting with our system. We can
+also prove to users that we are who they think we 
+are. A commercial Internet system offers two Web-technology interfaces: one for the general public and the other for business partners. The business partner interface allows
+the users 
+to place orders for goods, often with a value that runs to many tens of thousands of dollars. 
+Once the order is placed with the Web-technology system, it is sent
+to the corporate ordering 
+facility. This initiates a number of supply-chain-management functions, culminating in the goods 
+being shipped to the business partner along
+with an invoice for the goods.
+If we allowed anyone to 
+access this system anonymously, we would run the risk
+that, either maliciously or accidentally, 
+orders would be placed by users not authorized to do so. This could result in goods being 
+shipped in error, invoices being issued
+incorrectly, and business partners claiming that orders 
+shipped to them were never
+placed by them.
+Equally, users will be less willing to use the system 
+and to submit information
+such as credit details and user information for an order, if there is a 
+chance that
+someone is ‘spoofing’ the system, for example offering something that looks like 
+our
+system, but is in fact an operation set up to collect information that can be used to
+commit 
+fraud. An APPLICATION SERVER ARCHITECTURE [Dys04] has been adopted to deliver an
+Internet 
+technology application. The business logic and dynamic Web content generation of the application 
+resides on application servers, while all static content is provided by Web servers that also 
+act as reverse proxies (see PROTECTION REVERSEPROXY (457), INTEGRATION REVERSE PROXY (465), and 
+FRONT DOOR (473)) for the
+dynamic Web content. The application provides commercially-sensitive or 
+high value
+services to a restricted set of users.
+##%%&&
+Any organization 
+conducting e-commerce or publishing information over Web
+technologies must make their service 
+easily accessible to their users. However, any
+form of Web site or e-commerce system is a 
+potential target for attack, especially
+those on the Internet. A Demilitarized Zone (DMZ) 
+separates the business
+functionality and information from the Web servers that deliver it, and 
+places the
+Web servers in a secure area. This reduces the ‘surface area’ of the system that is 
+open
+to attack. A commercial Internet system holds customer profiling information, dealer 
+order
+information and commercially-sensitive sales information, any of which could be
+stolen or 
+corrupted by an attacker. This information must be shared with the organization’s corporate 
+systems, making them liable to attack as well.
+You could use a firewall to control access to your 
+systems from the outside world
+as shown below.
+The firewall would be configured to allow only 
+inbound traffic to access the Web
+server. However, this places a large onus on the system 
+administrators to configure
+the firewall correctly, and on the firewall software to operate 
+correctly. If the firewall fails, an attacker could potentially have direct access to other 
+business resources such as the SAP system or mainframe shown in the diagram. The 
+configuration
+of the firewall is further complicated by the fact that for any highly-available 
+Web-
+based system, multiple servers must be exposed to support either load balancing or
+failover. 
+If the Web-based system is also high-functionality, additional protocols must
+be allowed through 
+the firewall. All of this makes a configuration error more likely. An APPLICATION SERVER 
+ARCHITECTURE [Dys04] has been adopted to deliver an
+Internet technology application. The business 
+logic and dynamic Web content generation of the application resides on application servers, 
+while all static content is provided by Web servers that also act as a PROTECTION REVERSE PROXY 
+(457) for the
+dynamic Web content. The application holds information on users and provides important functionality for users, but the application is exposed to an environment that
+contains 
+potential attackers.
+##%%&&
+Putting a Web server or an application server directly on the Internet gives 
+attackers
+direct access to any vulnerabilities of the underlying platform (application, Web
+server, 
+libraries, operating system). However, to provide a useful service to Internet
+users, access to 
+your server is required. A packet filter firewall shields your server
+from attacks at the network 
+level. In addition, a PROTECTION REVERSE PROXY (457)
+protects the server software at the level of 
+the application protocol. You are running your Web site using a major software vendor’s 
+Web server software. Your Web site uses this vendor’s proprietary extensions to implement dynamic 
+content for your visitors, and you have invested heavily in your Web site’s software. Your
+server is protected by a PACKET FILTER FIREWALL (405).  
+You must open this firewall to allow 
+access to the public port (80) of your Web
+server. Attacks from the Internet that exploit 
+vulnerabilities of your server software
+frequently burden your system administrator with patch 
+installation. Switching to
+another vendor’s Web server is not possible, because of the existing 
+investment in the
+Web server platform, its content and your own software extensions. In addition,  
+with
+every new patch you install, 
+you run the risk of destabilizing your configuration so
+that your system and software extensions 
+cease to work. How can you escape the dilemma and keeping your Web site up without compromising 
+its security? Any kind of service accessible through the Internet or a through another 
+potentially-hostile network environment. Usually the access protocol is HTTP or HTTPS.
+##%%&&
+A Web site constructed from applications from different sources might require several different servers because of the heterogeneous operating requirement of the different applications. Because of the Internet addressing scheme, this distribution across several hosts is visible to the end user. Any change of the distribution or switch of parts of the site to a different host can invalidate URIs used SO far, either cross-links to the Web site or bookmarks set up by users. An integration reverse proxy (465) alleviates this situation by providing a homogenous view of a collection of servers, without leaking the physical distribution of the individual machines to end users.
+Consider a typical Web site of a company Myshop.com that sells goods and services. Their on-line presence was established with an interface to their support group, giving users access to static documentation such as a FAQ and a simple e-mail interface to contact support personnel. This Web server runs on a machine support.myshop.com. The marketing department the purchase an on-line catalog software vendor that displays their offerings on the server catalog.myshop.com.
+Later on they implement a simple on-line ordering system with a small development company, because orders need to be routed to their home-grown F.RP system automatically. Because they use a different platform for development for cost reasons, this order-taking system again needs to run on a separate server, order.myshop.com.
+To avoid problems with late-paying customers and ease operation of their on-line business, they add credit card on-line payment software from yet another vendor. Again an additional machine is needed. pay.myshop.com. They end up with the structure shown in the diagram.
+The business flourishes and their original infrastructure hits some limits. However, their practice of having every server known on the Internet makes shifting applications to another server or running an application on two different systems hard. The complexity of the infrastructure and the cross-linking of the different application servers make every change a complex endeavor, with the risk of many broken links. How can the IT organization shield end users and servers from changes in the infrastructure? How can they extend functionality or processing power without breaking links or invalidating bookmarks of users?
+A Web site consisting of several Web servers or Web applications.
+##%%&&
+Web applications and services often need to identify a user and keep track of a user's session. Integrating several such services allows a single log-in and session context to be provided. A reverse proxy is an ideal point to implement authentication and authorization, by implementing a Web entry server for your back-ends. A sophisticated reverse proxy can even access external back-ends, providing the user's Id and password automatically from a password wallet.
+Let us continue with the Myshop.com example. Soon after the integration reverse proxy (465) was deployed, users complained that they had to re-enter their identity several times on the Web site. Myshop.com's IT personnel recognized that each Web application carried its own user database. Adding an application that required user authentication only meant adding another user data base. Providing support services to their customers and resellers via the Web required more sophisticated authentication, and they wanted to allow access only to those users who paid for the service.
+How can Myshop.com provide access control to their Web applications easily, without requiring users to sign on several times, and with support for extensibility?
+In addition, the CIO recognizes that new means of user authentication can become popular in the future, so doesn't want the different applications to depend on a single authentication schema. For example, Myshop.com might give security tokens that generate one-time passwords to their resellers, to add a more secure authentication for users who place bulk orders.
+A Web site consisting of multiple Web applications that require user authentication. An integration reverse proxy (465) where applications need to authenticate
+users, and where only authenticated users are authorized to access a defined subset of applications, a protection reverse proxy (457) where user authentication is required, and where only authenticated users will get access to the underlying Web application, or a combination of both.
+##%%&&

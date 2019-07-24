@@ -1,0 +1,334 @@
+The Message Queuing Pattern provides a simple means for threads to communicate information among one another. Although the communication is a fairly heavyweight approach to sharing information, it is the most common one because it is readily supported by operating systems and because it is the easiest to prove correct. This is because it does not share data resources that must be protected from mutual exclusion problems. The Message Queuing Pattern uses asynchronous communications, implemented via queued messages, to synchronize and share information among tasks. This approach has the advantage of simplicity and does not display mutual exclusion problems because no resource is shared by reference. Any information shared among threads is passed by value to the separate thread. While this limits the complexity of the collaboration among the threads, this approach in its pure form is immune to the standard resource corruption problems that plague concurrent systems that share information passed by reference. In passed by value sharing, a copy of the information is made and sent to the receiving thread for processing. The receiving thread fully owns the data it receives and so may modify it freely without concern for corrupting data due to multiple writers or due to sharing it among a writer and multiple readers.
+##%%&&
+Interrupts have much to recommend them. They occur when the event of interest occurs, they execute very quickly and with little overhead, and they can provide a means for timely response to urgent needs. This accounts for their widespread use in real-time and embedded systems. Nevertheless, they are not a panacea for timely response to aperiodic phenomena. There are circumstances in which they are highly effective, but there are other circumstances when their use can lead to system failure. This pattern explores those issues. In many real-time and embedded applications, certain events must be responded to quickly and efficiently, almost regardless of when they occur or what the system is currently doing. When those responses are relatively short and can be made atomic (non interruptible), then the Interrupt Pattern can be an excellent design selection for handling those events.
+##%%&&
+Sometimes asynchronous communication schemes, such as the Message Queuing Pattern, do not provide timely responses across a thread boundary. An alternative is to synchronously invoke a method of an object, nominally running in another thread. This is the Guarded Call Pattern. It is a simple pattern, although care must be taken to ensure data integrity and to avoid synchronization and deadlock problems. The Message Queuing Pattern enforces an asynchronous rendezvous between two threads, modeled as active objects. In general, this approach works very well, but it means a rather slow exchange of information because the receiving thread does not process the information immediately. The receiving thread will process it the next time the thread executes. This can be problematic when the synchronization between the threads is urgent (when there are tight time constraints). An obvious solution is to simply call the method of the appropriate object in the other thread, but this can lead to mutual exclusion problems if the called object is currently active doing something else. The Guarded Call Pattern handles this case through the use of a mutual exclusion semaphore.
+##%%&&
+The Rendezvous Pattern is a simplified form of the Guarded Call pattern used to either synchronize a set of threads or permit data sharing among a set of threads. It reifies the synchronization of multiple threads as an object itself. There are many subtle variants of this pattern. The Rendezvous object may contain data to be shared as the threads synchronize, or it may simply provide a means for synchronizing an arbitrary number of threads at a synchronization point with some synchronization policy or precondition before allowing them all to continue independently. The simplest of these preconditions is that a certain number of threads have registered at their synchronization points. This special case is called the Thread Barrier Pattern. A precondition is something that is specified to be true prior to an action or activity. Preconditions are a type of constraint that is usually generative that is, it can be used to generate code either to force the precondition to be true or to check that a precondition is true. In fact, the most common way to ensure preconditions in UML or virtually any design language is through the use of state machines. A state is a precondition for the transitions exiting it. The Rendezvous Pattern is concerned with modeling the preconditions for synchronization or rendezvous of threads. It is a general pattern and easy to apply to ensure that arbitrarily complex sets of preconditions can be met at run-time. The basic behavioral model is that as each thread becomes ready to rendezvous, it 
+registers with the Rendezvous class and then blocks until the Rendezvous class releases it to run. Once the set of preconditions is met, then the registered tasks are released to run using whatever scheduling policy is currently in force.
+##%%&&
+For very small systems, or for systems in which execution predictability is crucial, the Cyclic Executive Pattern is a commonly used approach. It is used a lot in both small systems and in avionic flight systems for both aircraft and spacecraft applications environments. Although not without difficulties, its ease-of-implementation makes this an attractive choice when the dynamic properties of the system are stable and well understood. A Cyclic Executive Pattern has the advantage of almost mindless simplicity coupled with extremely predictable behavior. This results in a number of desirable properties for such systems. First, implementation of this pattern is so easy it is hard to get it wrong, at least in any gross way. Also, it can be written to run in highly memory-constrained systems where a full RTOS may not be an option. Another issue occurs when the execution time for a set of tasks is constant and it is desirable to have a highly predictable system. "Highly predictable" means you can predict the assembly language instruction that will be executing at any point in the future, based solely on the time.
+##%%&&
+The Round Robin Pattern employs a "fairness" scheduling doctrine that may be appropriate for systems in which it is more important for all tasks to progress than it is for specific deadlines to be met. The Round Robin Pattern is similar to the Cyclic Executive Pattern except that the former does employ preemption based on time. Most of the literature of real-time systems has focused on hard real-time systems (primarily because of its computation tractability). Hard real-time systems have tasks that are either time-driven (periodic) or event-driven (aperiodic with well-defined deadlines, after which the tasks are late). Such systems are inherently "unfair" because in an overload situation, low-priority tasks are selectively starved. There are other systems where individual deadlines are not as crucial as overall progress of the system. For such systems, a priority-based preemption approach may not be preferred.
+##%%&&
+The static priority pattern is the most common approach to scheduling in a real-time system. It has the advantages of being simple and scaling fairly well to large numbers of tasks. It is also simple to analyze for schedulability, using standard rate monotonic analysis methods. Two important concepts in the design of real-time systems are urgency and criticality. Urgency refers to the nearness of a deadline, while criticality refers to how important the meeting of that deadline is in terms of system functionality or correctness. It is clear that these are distinctly different concepts, yet what operating systems typically provide to deal with both of these issues is a single concept: priority. The operating system uses the priority of a task to determine which tasks should run preferentially when more than one task is ready to run. That is, the operating system always runs the highest-priority task of all the tasks currently ready to run. The most common approach to assigning priorities in a real-time system is to define the priority of each task during design. This priority is called static because it is assigned during design and never changed during the execution of the system. This approach has the advantages of (1) simplicity, (2) stability, and, (3) if good policies are used in the selection of the tasks and their priorities, optimality. By stability, we mean that in an overloaded situation, we can predict which tasks will fail to meet their deadlines (that is, the lower-priority ones). By optimality, we mean that if the task set can be scheduled using other approaches, then it can also be scheduled using static priority assignment. We will discuss a common optimal approach to priority assignment later in this section.
+##%%&&
+The Dynamic Priority Pattern is similar to the Static Priority Pattern except that the former automatically updates the priority of tasks as they run to reflect changing conditions. There are a large number of possibly strategies to change the task priority dynamically. The most common is called Earliest Deadline First, in which the highest-priority task is the one with the nearest deadline. The Dynamic Priority Pattern explicitly emphasizes urgency over criticality. As mentioned in the previous section, the two most important concepts around schedulability are urgency and criticality, but what operating systems typically provide to manage both is a single value: priority. In the Static Priority Pattern, priorities are set at design time, usually reflecting a combination of the urgency and criticality of the two. In the Dynamic Priority Pattern, the priority of a task is set at run-time based solely on the urgency of the task. The Dynamic Priority Pattern sets the priority of each task as a function of the time remaining until its deadline the closer the deadline, the higher the priority. Another common name for such a scheduling policy is Earliest Deadline First, or EDF. Such a strategy is demonstrably optimal. This means that if the task set can be scheduled by any approach, then it can also be scheduled by this one. However, the Dynamic Priority Pattern isn't stable; this means that it is impossible to predict at design time which tasks will fail in an overload situation. The Dynamic Priority Pattern is best suited for task sets that are at least of approximately equal criticality so that urgency is the overriding concern. It is also well suited for highly complex situations in which it may be impossible to predict the set of tasks that will be running simultaneously. In such complex situations, it is difficult or impossible to construct optimal static priorities for the tasks.
+##%%&&
+The Static Allocation Pattern applies only to simple systems with highly predictable and consistent loads. However, where it does apply, the application of this pattern results in systems that are easy to design and maintain. Dynamic memory allocation has two primary problems that are particularly poignant for real-time and embedded systems: nondeterministic timing of memory allocation and deallocation and memory fragmentation. This pattern takes a very simple approach to solving both these problems: disallow dynamic memory allocation. The application of this pattern means that all objects are allocated during system initialization. Provided that the memory loading can be known at design time and the worst-case loading can be allocated entirely in memory, the system will take a bit longer to initialize, but it will operate well during execution. As common as it is, dynamic memory allocation is somewhat of an anathema to real-time systems because it has two primary difficulties. First, allocation and deallocation are nondeterministic with respect to time because generally they require searching data structures to find free memory to allocate. Second, deallocation is not without problems either. There are two strategies for deallocation: explicit and implicit. Explicit deallocation can be deterministic in terms of time (since the system has a pointer to its exact location), and the programmer must keep track of all conditions under which the memory must be released and explicitly release it. Failure to do so correctly is called a memory leak, since not all memory allocated is ultimately reclaimed, so the amount of allocable storage decreases over time until system failure. Implicit deallocation is done by means of a Garbage Collector an object that either continuously or periodically scans memory looking for lost memory and reclaiming it. Garbage collectors can be used, but they are more nondeterministic than allocation strategies, require a fair amount of processing in and of themselves, and may require more memory in some cases (for example, if memory is to be compacted). Garbage collectors do, on the other hand, solve the most common severe defects in software systems. The third issue around dynamic memory is fragmentation. As memory is allocated in blocks of various sizes, the deallocation order is usually unrelated to the allocation order. This means that what was once a contiguous block of free memory ends up as a hodgepodge of free and used blocks of memory. The fragmentation increases the longer the system runs until eventually a request for a block of memory cannot be fulfilled because there is no single block large enough to fulfill the request, even though there may be more than enough total memory free. This is a serious problem for all real-time and embedded systems that use dynamic memory allocation not just for those that must run for longer periods of time between reboots.
+##%%&&
+The Static Allocation Pattern only works well for systems that are, well, static in nature. Sometimes you need sets of objects for different purposes at different times during execution. When this is the case, the Pool Allocation Pattern works well by creating pools of objects, created at startup, available to clients upon request. This pattern doesn't address needs for dynamic memory but still provides for the creation of more complex programs than the Static Allocation Pattern. In many applications, objects may be required by a large number of clients. For example, many clients may need to create data objects or message objects as the system operates in a complex, changing environment. The need for these objects may come and go, and it may not be possible to predict an optimal dispersement of the objects even if it is possible to bound the total number of objects needed. In this case, it makes sense to have pools of these objects！created but not necessarily initialized and available upon request. Clients can request them as necessary and release them back to the pool when they're done with them.
+##%%&&
+Many real-time and embedded systems are complex enough to be unpredictable in the order in which memory must be allocated and too complex to allocate enough memory for all possible worst cases. Such systems would be relatively simple to design using dynamic memory allocation. However, many such systems in the real-time and embedded world must function reliably for long periods of time！often years or even decades-between reboots. That means that while they are complex enough to require dynamic random allocation of memory, they cannot tolerate one of the major problems associated with dynamic allocation: fragmentation. For such systems, the Fixed Sized Buffer Pattern offers a viable solution: fragmentation-free dynamic memory allocation at the cost of some loss of memory usage optimality. The Fixed Sized Buffer Pattern provides an approach for true dynamic memory allocation that does not suffer from one of the major problems that affect most such systems: memory fragmentation. It is a pattern supported by most real-time operating systems directly. Although it requires static memory analysis to minimize nonoptimal memory usage, it is a simple and easy to implement approach. When these preconditions are met, then memory fragmentation will inevitably occur if the system runs long enough. Note that this is not a problem solely related to object-oriented systems, functionally decomposed systems written in C are just as affected as those written in C++. [2] The problem is severe enough that it will usually lead to system failure if the system runs long enough. The failure occurs even when analysis has demonstrated that there is adequate memory because if the memory is highly fragmented, there may be more than enough memory to satisfy a request, but it may not be in a contiguous block of adequate size. When this occurs, the memory allocation request fails even though there is enough total memory to satisfy the request.
+##%%&&
+In my experience over the last couple of decades leading and managing development projects implemented 
+in C and C++, pointer problems are by far the most common defects and the hardest to identify. They are 
+common because the pointer metaphor is very low level and requires precise management, but it is easy to 
+forget about when dealing with all possible execution paths. Inevitably, somewhere a pointer is destroyed 
+(or goes out of scope), but the memory is not properly freed (a memory leak), memory is released but 
+nevertheless accessed (dangling pointer), or memory is accessed but not properly allocated (uninitialized 
+pointer). These problems are notoriously difficult to identify using standard means of testing and peer 
+reviews. Tools such as Purify and LINT can identify "questionable practices," but sometimes they flag so 
+many things it is virtually impossible to use the results. The Smart Pointer Pattern is an approach that is 
+mechanistic (medium scope) rather than architectural (large scope) but has produced excellent results. Pointers are by far the most common way to realize an association between objects. The most common 
+implementation of a navigable association is to use a pointer. This pointer attribute is dereferenced to send 
+messages to the target object. The problem with pointers per se is that they are not objects; they are just 
+data. Because they are not objects, the primitive operations you can perform on them are not checked for 
+validity. Thus, we are free to access a pointer that has never been initialized or after the memory to which it points has been freed. We are also free to destroy the pointer without releasing the memory, resulting in 
+the loss of the now no-longer-referenceable memory to the system. 
+The Smart Pointer Pattern solves these problems by making the pointer itself an object. Because a Smart 
+Pointer is an object, it can have constructors and destructors and operations that can ensure that its 
+preconditional invariants ("rules of proper usage") are maintained. 
+These problems arise because pointers are inherently stupid. They are only data values (addresses), and the 
+operations defined on them are primitive and without checks on their correct use. If only they were objects, 
+their operations could be extended to include validity checks and they could identify or prevent 
+inappropriate use.
+##%%&&
+Memory defects are among the most common and yet most difficult to identify errors. They are common 
+because the programming languages provide very low access to memory but do not provide the means to 
+identify when the memory is being accessed properly. This can lead to memory leaks and dangling 
+pointers. The insidious aspect of these defects is that they tend to have global, rather than local, impact, so 
+while they can crash the entire system, they leave no trace as to where the defect may occur. The Garbage 
+Collection Pattern addresses memory access defects in a clean and simple way as far as the application 
+programmer is concerned. The standard implementation of this pattern does not address memory 
+fragmentation, but it does allow the system to 
+operate properly in the face of poorly managed memory. The Garbage Collection Pattern can eliminate memory leaks in programs that must use dynamic memory 
+allocation. Memory leaks occur because programmers make mistakes about when and how memory should 
+be deallocated. The solution offered by the Garbage Collection Pattern removes the defects by taking the 
+programmer out of the loop！the programmer no longer explicitly deallocates memory. By removing the 
+programmer, that source of defects is effectively removed. The costs of this pattern are run-time overhead 
+to identify and remove inaccessible memory and a loss of execution predictability because it cannot be 
+determined at design time when it may be necessary to reclaim freed memory.
+##%%&&
+The Garbage Compactor Pattern is a variant of the Garbage Collection Pattern that also removes memory 
+fragmentation. It accomplishes this goal by maintaining two memory segments in the heap. During 
+garbage collection, live objects are moved from one segment to the next, so in the target segment, the 
+objects are juxtapositioned adjacent to each other. The free memory in the segment then starts out as a 
+contiguous block.
+##%%&&
+The Critical Section Pattern is the simplest pattern to share resources that cannot be shared simultaneously. 
+It is lightweight and easy to implement, but it may prevent high priority tasks, even ones that don't use any 
+resources, from meeting their deadlines if the critical section lasts too long. This pattern has been long used in the design of real-time and embedded systems whenever a resource 
+must have at most a single owner at any given time. The basic idea is to lock the Scheduler whenever a 
+resource is accessed to prevent another task from simultaneously accessing it. The primary advantage of 
+this pattern is its simplicity, both in terms of understandability and in terms of implementation. It becomes 
+less applicable when the resource access may take a long time because it means that higher-priority tasks 
+may be blocked from execution for a long period of time.
+##%%&&
+The Priority Inheritance Pattern reduces priority inversion by manipulating the executing priorities of tasks 
+that lock resources. While not an ideal solution, it significantly reduces priority inversion at a relatively 
+low run-time overhead cost. The problem of unbounded priority inversion is a very real one and has accounted for many difficult-to-
+identify system failures. In systems running many tasks, such problems may not be at all obvious, and 
+typically the only symptom is that occasionally the system fails to meet one or more deadlines. The 
+Priority Inheritance Pattern is a simple, low-overhead solution for limiting the priority inversion to at most 
+a single level！that is, at most, a task will only be blocked by a single, lower-priority task owning a needed 
+resource.
+##%%&&
+The Highest Locker Pattern defines a 
+priority ceiling with each resource. The basic idea is that the task 
+owning the resource runs at the highest-priority ceiling of all the resources that it currently owns, provided 
+that it is blocking one or more higher-priority tasks. This limits priority inversion to at most one level. The Highest Locker Pattern is another solution to the unbounded blocking/unbounded priority inversion 
+problem. It is perhaps a minor elaboration from the Priority Inheritance Pattern, but it is different enough 
+to have some different properties with respects to schedulability. The Highest Locker Pattern limits priority 
+inversion to a single level as long as a task does not suspend itself while owning a resource. In this case, 
+you may get chained blocking similar to the Priority Inheritance Pattern. Unlike the Priority Inheritance 
+Pattern, however, you cannot get chained blocking if a task is preempted while owning a resource.
+##%%&&
+The Priority Ceiling Pattern, or Priority Ceiling Protocol (PCP) as it is sometimes called, addresses both 
+issues of bounding priority inversion (and hence bounding blocking time) and removal of deadlock. It is a 
+relatively sophisticated approach, more complex than the previous methods. It is not as widely supported 
+by commercial RTOSs, however, and so its implementation often requires writing extensions to the RTOS. The Priority Ceiling Pattern is used to ensure bounded priority inversion and task blocking times and also 
+to ensure that deadlocks due to resource contention cannot occur. It has somewhat more overhead than the 
+Highest Locker Pattern. It is used in highly reliable multitasking systems.
+##%%&&
+The Simultaneous Locking Pattern is a pattern solely concerned with deadlock avoidance. It achieves this 
+by breaking condition 2 (holding resources while waiting for others). The pattern works in an all-or-none 
+fashion. Either all resources needed are locked at once or none are. Deadlock can be solved by breaking any of the four conditions required for its existence. This pattern 
+prevents the condition of holding some resources by requesting others by allocating them all at once. This 
+is similar to the Critical Section Pattern. However, it has the additional benefit of allowing higher-priority 
+tasks to run if they don't need any of the locked resources. The problem of deadlock is such a serious one in highly reliable computing that many systems design in 
+specific mechanisms to detect it or avoid it. As previously discussed, deadlock occurs when a task is 
+waiting on a condition that can never, in principle, be satisfied. There are four conditions that must be true 
+for deadlock to occur, and it is sufficient to deny the existence of any one of these. The Simultaneous 
+Locking Pattern breaks condition 2, not allowing any task to lock resources while waiting for other 
+resources to be free.
+##%%&&
+The Ordered Locking Pattern is another way to ensure that deadlock cannot occur！this time by preventing condition 4 (circular waiting) from occurring. It does this by ordering the resources and requiring that they 
+always be accessed by any client in that specified order. If this is religiously enforced, then no circular 
+waiting condition can ever occur. The Ordered Locking Pattern eliminates deadlock by ordering resources and enforcing a policy in which 
+resources must be allocated only in a specific order. Unlike "normal" resource access, but similar to the 
+Simultaneous Locking Pattern, the client must explicitly lock and release the resources, rather than doing it 
+implicitly by merely invoking a service on a resource. This means that the potential for neglecting to 
+unlock the resource exists. The Ordered Locking Pattern solely addresses the problem of deadlock elimination, as does the previous 
+Simultaneous Locking Pattern.
+##%%&&
+The Shared Memory Pattern uses a common memory area addressable by multiple processors as a means 
+to send messages and share data. This is normally accomplished with the addition of special hardware！
+specifically, multi-ported RAM chips. The Shared Memory Pattern is a simple solution when data must be shared among more than one processor, 
+but timely responses to messages and events between the processors are not required. The pat-tern almost 
+always involves a combined hardware/software solution. Hardware support for single CPU-cycle 
+semaphore and memory access can avoid memory conflicts and data corruption, but usually some software 
+support to assist the low-level hardware features is required for robust access. If the data to be shared is 
+read-only, as for code that is to be executed on multiple processors, then such concurrency protection 
+mechanisms may not be required. Many systems have to share data between multiple processors！this is the essence of distribution, after all. 
+In some cases, the access to the data may persist for a long period of time, and the amount of data shared 
+may be large. In such cases, sending messages may be an inefficient method for sharing such information. 
+Multiple computers may need to update this "global" data, such as in a shared database, or they may need 
+to only read it, as is the case with executable code that may run on many processors or configuration tables. 
+A means by which such data may be effectively shared is needed.
+##%%&&
+Remote Procedure Calls (RPCs) are a common method for invoking services synchronously between 
+processors. The object-oriented equivalent, Remove Method Calls, work in the same way. This approach 
+requires underlying OS support, but it works much the same way that local method calls work: The client 
+invokes a service on the server and waits in a blocked condition until the called operation completes. RPCs are provided by Unix-based [2]
+ and other operating systems such as VxWorks [3] as a more abstract 
+and usable form of Inter-process Communications (IPC). RPCs allow the invocation of services across a 
+network in a way very similar to how a local service would be invoked. In the object-oriented world, we 
+refer to RMCs (Remote Method Calls), but the concept is the same: provide a means to invoke services 
+across a network in a manner as similar as possible to how they are invoked locally. The programming model used to invoke services locally is very well understood: dereference an 
+association (most commonly implemented as a pointer or reference) and invoke the service. This is done in 
+a synchronous fashion！the caller blocking until the server completes the request and returns whatever 
+values were requested. What is needed is a means to do the same thing even when the client and server are 
+not colocated.
+##%%&&
+The Observer Pattern is perhaps arguably more of a mechanistic design than architectural design pattern. 
+However, it will serve as the basis for other distribution collaboration architecture patterns, and so it is 
+included here. The Observer Pattern (aka "Publish-Subscribe") addresses the specific issue of how to notify a set of 
+clients in a timely way that a value that they care about has changed, especially when the notification 
+process is to be repeated for a relatively long period of time. The basic solution offered by the Observer 
+Pattern is to have the clients "subscribe" to the server to be notified about the value in question according 
+to some policy. This policy can be "when the value changes," "at least every so often," "at most every so 
+often," etc. This minimizes computational effort for notification of clients and across a communications 
+bus and minimizes the bus bandwidth required for notification of the appropriate clients. The problem addressed by the Observer Pattern is how to notify some number of clients in a timely fashion 
+of a data value according to some abstract policy, such as "when it changes," "every so often," "at most 
+every so often," and "at least every so often." One approach is for every client to query the data value but 
+this can be computationally wasteful, especially when a client wants to be notified only when the data 
+value changes. Another solution is for the server of this information to be designed knowing its clients. 
+However, we don't want to "break" the classic client-server model by giving the server knowledge about its 
+clients. That makes the addition of new clients a design change, making it more difficult to do dynamically 
+at run-time.
+##%%&&
+The Data Bus Pattern further abstracts the Observer Pattern by providing a common (logical) bus to which 
+multiple servers post their information and where multiple clients come to get various events and data 
+posted to the bus. This pattern is useful when a large number of servers and clients must share data and 
+events and is easily supported by some hardware bus structures that broadcast messages, such as the CAN 
+(Control Area Network) bus architectures. The Data Bus Pattern provides a single locale (the "Data Bus") for the location of information to be shared 
+across multiple processors. Clients desiring information have a common location for pulling information as 
+desired or subscribing for pushed data. The Data Bus Pattern is basically a Proxy Pattern with a centralized 
+store into which various data objects may be plugged. Many systems need to share many different data among a mixture of servers and clients, some of whom 
+might not be known when the client or data is designed. This pattern solves the problem by providing a 
+central storage facility into which data that is to be shared may be plugged along with metadata that 
+describes its contents.
+##%%&&
+The Proxy Pattern abstracts the true server from the client by means of a "stand-in" or surrogate class 
+providing a separation of a client and a server, allowing the hiding of specified properties of the server 
+from the clients. The Proxy Pattern abstracts the true server from the client by means of a "stand-in" or surrogate class. 
+There are a number of reasons why this may be useful, such as to hide some particular implementation 
+properties from the clients and thus allow them to vary transparently to the client. For our purposes here, 
+the primary reason to use the Proxy Pattern is to hide the fact that a server may be actually located in 
+another address space from its client. This allows the server to be located in any accessible location, and 
+the clients need not concern themselves with how to contact the true server to access required information 
+or services. The design of modern embedded systems must often be deployed across multiple address spaces, such as 
+different processors. Often such details are subject to change during the design process or, even worse, 
+during the implementation of the system. It is problematic to "hard-code" the knowledge that a server may 
+be remote because this may change many times as the design progresses. Further, the clients and servers 
+may be redeployed in other physical architectures and using different communications media. If the clients 
+are intimately aware of these design details, then porting the clients to the new platforms is more difficult. 
+The two primary problems addressed by the Proxy Pattern are the transparency of the potential remoteness 
+of the servers and the hiding and encapsulation of the means by which to contact such remote servers.
+##%%&&
+The Broker Pattern may be thought of as a symmetric version of the Proxy Pattern！that is, it provides a Proxy Pattern in situations where the location of the clients and servers are not known at design time. The Broker Pattern extends the Proxy Pattern through the inclusion of the 
+Broker！an "object reference 
+repository" globally visible to both the clients and the servers. This broker facilitates the location of the 
+servers for the clients so that their respective locations need not be known at design time. This means that 
+more complex systems that can use a symmetric deployment architecture, such as is required for dynamic 
+load balancing, can be employed. In addition to the problems addressed by the Proxy Pattern (such as communication infrastructure 
+transparency), a limitation of most of the distribution patterns is that they require a priori knowledge of the 
+location of the servers. This limits their use to asymmetric distribution architectures. Ideally, the solution 
+should provide a means that can locate and then invoke services at the request of the client, including 
+subscription to published data.
+##%%&&
+Complete redundancy is costly. Sometimes it is costly in terms of recurring cost (cost per shipped system) 
+because hardware is replicated. Sometimes it is costly also in development cost (due to diverse, or n-way, 
+redundancy). Not all safety-critical and high-reliability systems need the heavy weight and expensive 
+redundancy required by some safety and reliability patterns. The Protected Single Channel Pattern is a 
+lightweight means to get some safety and reliability by adding additional checks and actions (and possibly 
+some level of redundant hardware as well). The Protected Single Channel Pattern uses a single channel to handle sensing and actuation. Safety and 
+reliability are enhanced through the addition of checks at key points in the channel, which may require some additional hardware. The Protected Single Channel Pattern will not be able to continue to function in 
+the presence of persistent faults, but it detects and may be able to handle transient faults. Since redundancy is expensive in recurring cost, and the safety and reliability requirements of some 
+systems may not be as high as with others, a means is needed to improve safety and reliability in an 
+inexpensive manner even if the improvements in safety and reliability are not as great as with some other 
+approaches.
+##%%&&
+The Homogeneous Redundancy Pattern is primarily a pattern to improve reliability by offering multiple 
+channels. These channels can operate in sequence, as in the Switch To Backup Pattern (another name for 
+this pattern), or in parallel, as in the Triple Modular Redundancy Pattern, described later. The pattern 
+improves reliability by addressing random faults (failures). Since the redundancy is homogeneous, by 
+definition any systematic fault in one copy of the system is replicated in its clones, so it provides no 
+protection against systematic faults (errors). An obvious approach to solving the problem of things breaking is to provide multiple copies of that thing. 
+In safety and reliability architectures, the fundamental unit is called a channel. A channel is a kind of 
+subsystem, or run-time organizational unit, which is end-to-end in its scope, from the monitoring of real-
+world signals to the control of actuators that do the work of the system. The Homogeneous Redundancy 
+Pattern replicates channels with a switch-to-backup policy in the case of an error. The problem addressed by the Homogeneous Redundancy Pattern is to provide protection against random 
+faults！that is, failures！in the system execution and to be able to continue to provide functionality in the 
+presence of a failure. The primary channel should continue to run as long as there are no problems. In the 
+case of failure within the channel, the system must be able to detect the fault and switch to the backup 
+channel.
+##%%&&
+The Triple Modular Redundancy Pattern (TMR, for short) is a pattern used to enhance reliability and 
+safety in situations where there is no fail-safe state. The TMR pattern offers an odd number of channels 
+(three) operating in parallel, each in effect checking the results of all the others. The computational results 
+or resulting actuation signals are compared, and if there is a disagreement, then a two-out-of-three majority 
+wins policy is invoked. The TMR pattern is a variation of the Homogeneous Redundancy Pattern that operates three channels in 
+parallel rather than operating a single channel and switching over to an alternative when a fault is detected.  
+By operating the channels in parallel, the TMR pattern detects random faults as outliers (assuming a single 
+point failure and common mode fault independence of the channels) that are discarded as erroneous 
+automatically. The TMR pattern runs the channels in parallel and at the end compares the results of the 
+computational channels together. As long as two channels agree on the output, then any deviating 
+computation of the third channel is discarded. This allows the system to operate in the presence of a fault 
+and continue to provide functionality. The problem addressed by the Triple Modular Redundancy Pattern is the same as the Homogeneous 
+Redundancy Pattern！that is, to provide protection against random faults (failures) with the additional 
+constraint that when a fault is detected, the input data should not be lost, nor should additional time be 
+required to provide a correct output response.
+##%%&&
+The Heterogeneous Redundancy Pattern [3] improves detection of faults over homogeneous redundancy by 
+also detecting systematic faults. This is achieved by using multiple channels that have independent designs 
+and/or implementations. This is the most expensive kind of redundancy because not only is the recurring 
+cost increased (similar to the Homogeneous Redundancy Pattern) but development cost is increased as 
+well due to the doubled or tripled design effort required. [3] Also known as 
+Diverse Redundancy and N-way Programming. For high-safety and reliability systems, it is common to provide redundant channels to enable the system to 
+identify faults and to continue safe and reliable operation in the presence of faults. Similar to its 
+homogeneous cousin, the Heterogeneous Redundancy Pattern provides redundant channels as an 
+architectural means to improve safety and reliability. What sets the Heterogeneous Redundancy Pattern 
+apart is that the channels are not mere replicas but are constructed from independent designs. This means 
+that identical design errors are unlikely to appear in multiple channels. The primary downside of this 
+pattern is its high design development cost that comes on top of the high recurring cost typical of 
+heavyweight redundant channels. 
+There are a number of useful variants of the Heterogeneous Redundancy Pattern that provide the detection 
+of both kinds of faults but are lower cost and may not provide continued operation in the presence of faults. 
+See, for example, the Monitor-Actuator and Sanity Check Patterns. The Heterogeneous Redundancy Pattern provides protection against both kinds of faults！systematic 
+errors as well as random failures. Assuming that the design includes independence of faults, the pattern 
+provides single fault safety in the same way as the Homogeneous Redundancy Pattern！that is, when the 
+primary channel detects a fault, the secondary channel takes over.
+##%%&&
+All safety-critical and reliable architectures have redundancy in some form or another. In some of these 
+patterns, the entire channel, from original data sensing to final output actuation, is replicated in some form 
+or another. In the Monitor-Actuator Pattern, an independent sensor maintains a watch on the actuation 
+channel looking for an indication that the system should be commanded into its fail-safe state. Many safety-critical systems have what is called a fail-safe state. This is a condition of the system known 
+to be always safe. When this is true, and when the system doesn't have extraordinarily high availability 
+requirements (that is, in the case of a fault detection it is appropriate to enter the fail-safe state), then the 
+safety of the system can be maintained at a lower cost than some of the other patterns discussed in this 
+chapter. The Monitor-Actuator Pattern is a specialized form of the Heterogeneous Redundancy Pattern 
+because the redundancy provided is different from the primary actuation channel: It provides monitoring, 
+typically of the commanded actuation itself (although it may also monitor the internal operation of the 
+actuation channel as well). 
+Assuming fault independence and a single point fault protection requirement, the basic principle of the 
+Monitor-Actuator Pattern may be summed up this way: If the actuation channel has a fault, the monitoring 
+channel detects it. If the monitoring channel breaks, then the actuation channel continues to operate 
+properly. The Monitor-Actuator Pattern addresses the problem of improving safety in a system with moderate to low 
+availability requirements at a low cost.
+##%%&&
+The Sanity Check Pattern is a very lightweight pattern that provides minimal fault coverage. The purpose of the Sanity Check Pattern is to ensure that the system is more or less doing something reasonable, even if 
+not quite correct. This is useful in situations where the actuation is not critical if performed correctly (such 
+as an optional enhancement) but is capable of doing harm if it is done incorrectly. It is a variant of the 
+Monitor-Actuator Pattern and, like the that pattern, assumes that a fail-safe state is available. The Sanity Check Pattern is a variant of the Monitor-Actuator Pattern; it has the same basic properties. 
+Where it differs is in the functionality provided by the Monitor Component. The Sanity Check Pattern only 
+exists to ensure that the actuation is approximately correct. It typically uses lower-cost (and usually lower-
+accuracy) sensors and can only identify when the actuation is grossly incorrect. Thus, it is applicable only 
+in situations where fine control is not a safety property of the Actuation Channel. In some extreme cases, 
+the monitor may not even be required to know the commanded set point because it will only ensure that the 
+actuation output is within some fixed range. Usually, however, the Monitor will have a "valid range" that 
+varies with the commanded set point. This pattern addresses the issue, making sure the "system does no harm" when minor, or even moderate, 
+deviations from the commanded set point have no safety impact, and providing this minimal level of 
+protection at a very low recurring and design cost.
+##%%&&
+The Watchdog Pattern is similar to the Sanity Check Pattern in the sense that it is lightweight and 
+inexpensive. It differs in what it monitors. While the Sanity Check Pattern monitors the actual output of the 
+system using an external environmental sensor, the Watchdog Pattern merely checks that the internal 
+computational processing is proceeding as expected. This means that its coverage is minimal, and a broad 
+set of faults will not be detected. On the other hand, it is a pattern that can add additional safety when 
+combined with other heavier-weight patterns. A 
+watchdog, used in common computing parlance, is a component that watches out over processing of 
+another component. Its job is to make sure that nothing is obviously wrong, just as a real watchdog protects 
+the entrance to the henhouse without bothering to check if in fact the chickens inside are plotting nefarious 
+deeds. The most common purpose of a watchdog is to check a computation timebase or to ensure that 
+computation steps are proceeding in a predefined order. Watchdogs are often used in real-time systems to 
+ensure that time-dependent processing is proceeding appropriately. Real-time systems are those that are predictably timely. In the most common (albeit simplified) view, the 
+computations have a deadline by which they must be applied. If the computation occurs after that deadline, 
+the result may either be erroneous or irrelevant！so-called hard real-time systems. Systems implementing 
+PID control loops, for example, are notoriously sensitive to the time lag between the occurrence of the 
+input signal and the output of the control signal. If the output comes too late, then the system cannot be 
+controlled; then the system is said to be in an unstable region.
+##%%&&
+Sometimes the control of the safety measures of a system are very complex. This may be because the 
+system cannot be simply shut off but must be driven through a potentially complex sequence of actions to 
+read a fail-safe state. The Safety Executive Pattern provides a Safety Executive to oversee the coordination 
+of potentially multiple channels when safety measures must be actively applied. Systems often cannot merely be shut down in the event of a fault. Sometimes this is because they are in the 
+middle of handling some dangerous materials or a high-energy state of the system (such as high speed or 
+high voltage potential). Simply shutting the system off in such a state is potentially very hazardous. In the 
+presence of a fault, the system must be guided through a potentially complicated series of steps to reach a 
+condition known to be a fail-safe state. The Safety Executive Pattern models exactly this situation in which 
+a Safety Executive component coordinates the activities of potentially many actuation channels and safety 
+measures to reach a fail-safe state. The problem addressed by the Safety Executive Pattern is to provide a means to coordinate and control the 
+execution of safety measures when the safety measures are complex.
+##%%&&
