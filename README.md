@@ -24,3 +24,7 @@ __File Instructions__
   "Stack_Overflow_or_Software_Engineering_post_id<design_pattern_tag_1<design_pattern_tag_2< ..."
   * __stackoverflow_tags.txt, softwareengineering_tags.txt__: format per line:  
   "design_pattern_tag<original_tag_1<original_tag_2< ..."
+
+__Appendix__
+
+* [Distribution of Design Patterns in the Corpus](https://github.com/WoodenHeadoo/dpword2vec/wiki/Distribution-of-Design-Patterns-in-the-Corpus)
