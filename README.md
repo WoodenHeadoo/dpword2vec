@@ -24,6 +24,10 @@ __File Instructions__
   "Stack_Overflow_or_Software_Engineering_post_id<design_pattern_tag_1<design_pattern_tag_2< ..."
   * __stackoverflow_tags.txt, softwareengineering_tags.txt__: format per line:  
   "design_pattern_tag<original_tag_1<original_tag_2< ..."
+* [code](https://github.com/WoodenHeadoo/dpword2vec/tree/master/code)
+  * __data_preparation_pairs.py__: Python script for calculating the co-occurrence counts
+  * __weight_cal.py__: Python script for calculating the weights of the dp-word pairs
+  * [dpword2vec_glove](https://github.com/WoodenHeadoo/dpword2vec/tree/master/code/dpword2vec_glove): C code of the GloVe model for building the word and design pattern vectors
 
 __Appendix__
 
