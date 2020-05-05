@@ -32,3 +32,4 @@ __File Instructions__
 __Appendix__
 
 * [Distribution of Design Patterns in the Corpus](https://github.com/WoodenHeadoo/dpword2vec/wiki/Distribution-of-Design-Patterns-in-the-Corpus)
+* [Baseline: Latent Semantic Indexing (LSI)](https://github.com/WoodenHeadoo/dpword2vec/blob/master/baselines/LSI.md)
