@@ -12,7 +12,7 @@ __File Instructions__
 * [design pattern - word pair dataset](https://github.com/WoodenHeadoo/dpword2vec/tree/master/design%20pattern%20-%20word%20pair%20dataset)
   * __selected_patterns_words.txt__: format per line:  
   "selected_design_pattern corresponding_word_1 corresponding_word_2 ...  corresponding_word_40"
-  * __pattern_word_labels.txt__: labels for each design pattern - word pair, 1 for "related" and 0 for "unrelated", one design pattern and its 40 corresponding words per line
+  * __pattern_word_labels.txt__: labels for each design pattern - word pair, 3 for "related", 2 for "somewhat related", and 1 for "unrelated", one design pattern and its 40 corresponding words per line
 * [design pattern and word vectors](https://github.com/WoodenHeadoo/dpword2vec/tree/master/design%20pattern%20and%20word%20vectors)
   * __pats_vocab.txt__: vocabulary of design patterns and words, tokens with the suffix "designpattern" denote design patterns
   * __vecs.txt__: the design pattern and word vectors according to the order of pats_vocab.txt, the dimension is 100
