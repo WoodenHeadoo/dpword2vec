@@ -17,8 +17,10 @@ __File Instructions__
   * __pats_vocab.txt__: vocabulary of design patterns and words, tokens with the suffix "designpattern" denote design patterns
   * __vecs.txt__: the design pattern and word vectors according to the order of pats_vocab.txt, the dimension is 100
 * [design pattern selection](https://github.com/WoodenHeadoo/dpword2vec/tree/master/design%20pattern%20selection)
-  * __pattern_des_gof.txt, pattern_des_security.txt, pattern_des_douglass.txt__: descriptions of the design problems in each collection, separated by "##%%&&"
-  * __pattern_pats_gof.txt, pattern_pats_security.txt, pattern_pats_douglass.txt__: corresponding correct design patterns to each collection of design problems, one design pattern per line
+  * __dp_selection_gof.txt, dp_selection_security.txt, dp_selection_douglass.txt__: format per line:
+  "design problem##%%&&the corresponding correct design pattern"
+  * __pattern_des_gof.txt, pattern_des_security.txt, pattern_des_douglass.txt__: descriptions of design patterns in each collection for design pattern selection, separated by "##%%&&"
+  * __pattern_pats_gof.txt, pattern_pats_security.txt, pattern_pats_douglass.txt__: corresponding design patterns to the descriptions above, one design pattern per line
 * [design pattern tag recommendation](https://github.com/WoodenHeadoo/dpword2vec/tree/master/design%20pattern%20tag%20recommendation)
   * __stackoverflow_posts.txt, softwareengineering_posts.txt__: format per line:  
   "Stack_Overflow_or_Software_Engineering_post_id<design_pattern_tag_1<design_pattern_tag_2< ..."
